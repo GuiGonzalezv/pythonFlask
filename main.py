@@ -33,13 +33,21 @@ def login():
 	if request.method == "POST":
 		result = request.form
 
+
+		response = {"status":"correto"}
 		if usuario_existe(result['email']) == True:
+
 			if testa_senha(result['email'], result['senha']) == True:
-				return render_template('sucesso.html')
+				
+				return render_template('sucesso.html', response=response)
+			
 			else:
-				return render_template("erro.html")
+				response['status'] = "senha_incorreta"
+				return render_template("sucesso.html", response=response)
+		
 		else:
-			return render_template("erro.html")
+			response['status'] = "usuario_incorreto"
+			return render_template("sucesso.html", response=response)
 	
 	
 if __name__ == '__main__':

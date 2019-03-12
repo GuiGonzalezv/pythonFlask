@@ -1,1 +1,9 @@
-<h1> Sucesso </h1>
+{% if response['status'] == "correto" %}
+	<h1> Sucesso </h1>
+{%elif response['status'] == "senha_incorreta" %}
+	<h1> Senha incorreta </h1>
+{%elif response['status'] == "usuario_incorreto" %}
+	<h1> Usuario nao existe </h1>
+{%else%}
+	<h1> Erro </h1>
+{% endif %}
